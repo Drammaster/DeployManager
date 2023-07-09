@@ -6,21 +6,6 @@ using System.Collections.Generic;
 
 namespace DeployManager
 {
-    public class LatestDeploy
-    {
-        public string Id { get; set; }
-        public string ReleaseId { get; set; }
-        public string EnvironmentId { get; set; }
-        public string DeployedAt { get; set; }
-        public LatestDeploy(string id, string releaseId, string environmentId, string deployedAt)
-        {
-            Id = id;
-            ReleaseId = releaseId;
-            EnvironmentId = environmentId;
-            DeployedAt = deployedAt;
-        }
-    }
-
     internal class Program
     {
         static void Main()
@@ -32,32 +17,6 @@ namespace DeployManager
 
             dynamic releases = JsonConvert.DeserializeObject(File.ReadAllText("Releases.json"));
             dynamic deployments = JsonConvert.DeserializeObject(File.ReadAllText("Deployments.json"));
-            
-            void FindLatestDeploy(string environmentId, dynamic deploys)
-            {
-                LatestDeploy latestDeploy = new LatestDeploy("", "", "", "");
-                foreach (var deploy in deploys)
-                {
-                    if (deploy.EnvironmentId.ToString() == environmentId)
-                    {
-                        if (latestDeploy.DeployedAt == "")
-                        {
-                            latestDeploy.Id = deploy.Id;
-                            latestDeploy.ReleaseId = deploy.ReleaseId;
-                            latestDeploy.EnvironmentId = deploy.EnvironmentId;
-                            latestDeploy.DeployedAt = deploy.DeployedAt;
-                        }
-                        else if (DateTime.Parse(latestDeploy.DeployedAt) < DateTime.Parse(deploy.DeployedAt.ToString()))
-                        {
-                            latestDeploy.Id = deploy.Id;
-                            latestDeploy.ReleaseId = deploy.ReleaseId;
-                            latestDeploy.EnvironmentId = deploy.EnvironmentId;
-                            latestDeploy.DeployedAt = deploy.DeployedAt;
-                        }
-                    }
-                }
-                Console.WriteLine($"- `{latestDeploy.ReleaseId}` kept because it was the most recently deployed to `{latestDeploy.EnvironmentId}`");
-            }
 
             dynamic FindProjectDeploys(List<string> projectReleases)
             {
@@ -94,7 +53,7 @@ namespace DeployManager
                 {
                     Console.WriteLine($"Environment {environment.Name}");
                     dynamic projectDeploys = FindProjectDeploys(projectReleases);
-                    FindLatestDeploy(environment.Id, projectDeploys);
+                    Deployment.FindLatestDeploy(environment.Id, projectDeploys);
                 }
                 Console.WriteLine();
             }
