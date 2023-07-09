@@ -52,5 +52,18 @@ namespace DeployManager
                 Console.WriteLine(ex.ToString());
             }
         }
+
+        public static List<Deployment> FindProjectDeploys(List<string> projectReleases, List<Deployment> deployments)
+        {
+            List<Deployment> projectDeploys = new List<Deployment>();
+            foreach (var deployment in deployments)
+            {
+                if (projectReleases.Contains(deployment.ReleaseId.ToString()))
+                {
+                    projectDeploys.Add(deployment);
+                }
+            }
+            return projectDeploys;
+        }
     }
 }
