@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DeployManager
 {
-    internal class Environment
+    internal class Project
     {
         public string Id { get; set; }
         public string Name { get; set; }

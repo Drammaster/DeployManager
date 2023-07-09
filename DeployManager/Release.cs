@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace DeployManager
 {
-    internal class Environment
+    internal class Release
     {
         public string Id { get; set; }
-        public string Name { get; set; }
+        public string ProjectId { get; set; }
+        public string Version { get; set; }
+        public string Created { get; set; }
     }
 }

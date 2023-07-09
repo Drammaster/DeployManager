@@ -12,15 +12,21 @@ namespace DeployManager
         {
             short numberOfReleasesToKeep = 1;
 
-            dynamic projects = JsonConvert.DeserializeObject(File.ReadAllText("Projects.json"));
-            dynamic environments = JsonConvert.DeserializeObject(File.ReadAllText("Environments.json"));
+            string projectsJson = File.ReadAllText("Projects.json");
+            var projects = JsonConvert.DeserializeObject<List<Project>>(projectsJson);
 
-            dynamic releases = JsonConvert.DeserializeObject(File.ReadAllText("Releases.json"));
-            dynamic deployments = JsonConvert.DeserializeObject(File.ReadAllText("Deployments.json"));
+            string environmentsJson = File.ReadAllText("Environments.json");
+            var environments = JsonConvert.DeserializeObject<List<Environment>>(environmentsJson);
 
-            dynamic FindProjectDeploys(List<string> projectReleases)
+            string releasesJson = File.ReadAllText("Releases.json");
+            var releases = JsonConvert.DeserializeObject<List<Release>>(releasesJson);
+
+            string deploymentsJson = File.ReadAllText("Deployments.json");
+            var deployments = JsonConvert.DeserializeObject<List<Deployment>>(deploymentsJson);
+
+            List<Deployment> FindProjectDeploys(List<string> projectReleases)
             {
-                List<dynamic> projectDeploys = new List<dynamic>();
+                List<Deployment> projectDeploys = new List<Deployment>();
                 foreach (var deployment in deployments)
                 {
                     if (projectReleases.Contains(deployment.ReleaseId.ToString()))
@@ -52,7 +58,7 @@ namespace DeployManager
                 foreach (var environment in environments)
                 {
                     Console.WriteLine($"Environment {environment.Name}");
-                    dynamic projectDeploys = FindProjectDeploys(projectReleases);
+                    List<Deployment> projectDeploys = FindProjectDeploys(projectReleases);
                     Deployment.FindLatestDeploy(environment.Id, projectDeploys);
                 }
                 Console.WriteLine();
