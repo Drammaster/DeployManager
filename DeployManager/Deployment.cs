@@ -24,25 +24,29 @@ namespace DeployManager
         {
             try
             {
-                Deployment latestDeploy = new Deployment(String.Empty, String.Empty, String.Empty, String.Empty);
+                Deployment latestDeploy = new Deployment(
+                    String.Empty,
+                    String.Empty,
+                    String.Empty,
+                    String.Empty
+                    );
+
                 foreach (var deploy in deploys)
+                if (deploy.EnvironmentId.ToString() == environmentId)
                 {
-                    if (deploy.EnvironmentId.ToString() == environmentId)
+                    if (latestDeploy.DeployedAt == String.Empty)
                     {
-                        if (latestDeploy.DeployedAt == String.Empty)
-                        {
-                            latestDeploy.Id = deploy.Id;
-                            latestDeploy.ReleaseId = deploy.ReleaseId;
-                            latestDeploy.EnvironmentId = deploy.EnvironmentId;
-                            latestDeploy.DeployedAt = deploy.DeployedAt;
-                        }
-                        else if (DateTime.Parse(latestDeploy.DeployedAt) < DateTime.Parse(deploy.DeployedAt.ToString()))
-                        {
-                            latestDeploy.Id = deploy.Id;
-                            latestDeploy.ReleaseId = deploy.ReleaseId;
-                            latestDeploy.EnvironmentId = deploy.EnvironmentId;
-                            latestDeploy.DeployedAt = deploy.DeployedAt;
-                        }
+                        latestDeploy.Id = deploy.Id;
+                        latestDeploy.ReleaseId = deploy.ReleaseId;
+                        latestDeploy.EnvironmentId = deploy.EnvironmentId;
+                        latestDeploy.DeployedAt = deploy.DeployedAt;
+                    }
+                    else if (DateTime.Parse(latestDeploy.DeployedAt) < DateTime.Parse(deploy.DeployedAt.ToString()))
+                    {
+                        latestDeploy.Id = deploy.Id;
+                        latestDeploy.ReleaseId = deploy.ReleaseId;
+                        latestDeploy.EnvironmentId = deploy.EnvironmentId;
+                        latestDeploy.DeployedAt = deploy.DeployedAt;
                     }
                 }
                 Console.WriteLine($"- `{latestDeploy.ReleaseId}` kept because it was the most recently deployed to `{latestDeploy.EnvironmentId}`");
@@ -56,12 +60,11 @@ namespace DeployManager
         public static List<Deployment> FindProjectDeploys(List<string> projectReleases, List<Deployment> deployments)
         {
             List<Deployment> projectDeploys = new List<Deployment>();
+
             foreach (var deployment in deployments)
+            if (projectReleases.Contains(deployment.ReleaseId.ToString()))
             {
-                if (projectReleases.Contains(deployment.ReleaseId.ToString()))
-                {
-                    projectDeploys.Add(deployment);
-                }
+                projectDeploys.Add(deployment);
             }
             return projectDeploys;
         }

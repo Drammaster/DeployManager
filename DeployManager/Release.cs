@@ -16,12 +16,11 @@ namespace DeployManager
         public static List<string> AllProjectReleases(string projectId, List<Release> releases)
         {
             List<string> allReleases = new List<string>();
+
             foreach (var release in releases)
+            if (projectId == release.ProjectId.ToString())
             {
-                if (projectId == release.ProjectId.ToString())
-                {
-                    allReleases.Add(release.Id.ToString());
-                }
+                allReleases.Add(release.Id.ToString());
             }
             return allReleases;
         }

@@ -27,13 +27,16 @@ namespace DeployManager
 
             foreach (var project in projects)
             {
+                // Finding all releases for a project.
                 List<string> projectReleases = Release.AllProjectReleases(project.Id, releases);
+
                 Console.WriteLine($"Project {project.Name}");
                 Console.WriteLine();
+
                 foreach (var environment in environments)
                 {
                     Console.WriteLine($"Environment {environment.Name}");
-                    List<Deployment> projectDeploys = Deployment.FindProjectDeploys(projectReleases, deployments);
+                    var projectDeploys = Deployment.FindProjectDeploys(projectReleases, deployments);
                     Deployment.FindLatestDeploy(environment.Id, projectDeploys);
                 }
                 Console.WriteLine();
