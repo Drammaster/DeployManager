@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Threading;
 using System.IO;
-using System.Linq;
 
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using System.Runtime.Remoting.Lifetime;
 
 namespace DeployManager
 {
@@ -30,7 +25,7 @@ namespace DeployManager
     {
         static void Main()
         {
-            Int16 numberOfReleasesToKeep = 1;
+            short numberOfReleasesToKeep = 1;
 
             dynamic projects = JsonConvert.DeserializeObject(File.ReadAllText("Projects.json"));
             dynamic environments = JsonConvert.DeserializeObject(File.ReadAllText("Environments.json"));
@@ -45,14 +40,14 @@ namespace DeployManager
                 {
                     if (deploy.EnvironmentId.ToString() == environmentId)
                     {
-                        if(latestDeploy.DeployedAt == "")
+                        if (latestDeploy.DeployedAt == "")
                         {
                             latestDeploy.Id = deploy.Id;
                             latestDeploy.ReleaseId = deploy.ReleaseId;
                             latestDeploy.EnvironmentId = deploy.EnvironmentId;
                             latestDeploy.DeployedAt = deploy.DeployedAt;
                         }
-                        else if(DateTime.Parse(latestDeploy.DeployedAt) < DateTime.Parse(deploy.DeployedAt.ToString()))
+                        else if (DateTime.Parse(latestDeploy.DeployedAt) < DateTime.Parse(deploy.DeployedAt.ToString()))
                         {
                             latestDeploy.Id = deploy.Id;
                             latestDeploy.ReleaseId = deploy.ReleaseId;
