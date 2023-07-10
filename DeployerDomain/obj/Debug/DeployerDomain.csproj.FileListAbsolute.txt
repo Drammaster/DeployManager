@@ -1,0 +1,6 @@
+C:\GitRepos\DeployManager\DeployerDomain\bin\Debug\DeployerDomain.dll
+C:\GitRepos\DeployManager\DeployerDomain\bin\Debug\DeployerDomain.pdb
+C:\GitRepos\DeployManager\DeployerDomain\obj\Debug\DeployerDomain.csproj.AssemblyReference.cache
+C:\GitRepos\DeployManager\DeployerDomain\obj\Debug\DeployerDomain.csproj.CoreCompileInputs.cache
+C:\GitRepos\DeployManager\DeployerDomain\obj\Debug\DeployerDomain.dll
+C:\GitRepos\DeployManager\DeployerDomain\obj\Debug\DeployerDomain.pdb

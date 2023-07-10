@@ -1,4 +1,4 @@
-using Domain;
+using DeployerDomain;
 
 namespace ReleaseTest
 {

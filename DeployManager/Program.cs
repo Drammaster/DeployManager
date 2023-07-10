@@ -3,6 +3,7 @@ using System.IO;
 
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using DeployerDomain;
 
 namespace DeployManager
 {
@@ -17,7 +18,7 @@ namespace DeployManager
             var projects = JsonConvert.DeserializeObject<List<Project>>(projectsJson);
 
             string environmentsJson = File.ReadAllText("Environments.json");
-            var environments = JsonConvert.DeserializeObject<List<Environment>>(environmentsJson);
+            var environments = JsonConvert.DeserializeObject<List<DeployerDomain.Environment>>(environmentsJson);
 
             string releasesJson = File.ReadAllText("Releases.json");
             var releases = JsonConvert.DeserializeObject<List<Release>>(releasesJson);

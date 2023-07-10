@@ -22,4 +22,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DeployerDomain\DeployerDomain.csproj" />
+  </ItemGroup>
+
 </Project>

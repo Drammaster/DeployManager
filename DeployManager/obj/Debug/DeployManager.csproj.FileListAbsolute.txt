@@ -1,11 +1,13 @@
 C:\GitRepos\DeployManager\DeployManager\bin\Debug\DeployManager.exe.config
 C:\GitRepos\DeployManager\DeployManager\bin\Debug\DeployManager.exe
 C:\GitRepos\DeployManager\DeployManager\bin\Debug\DeployManager.pdb
+C:\GitRepos\DeployManager\DeployManager\bin\Debug\DeployerDomain.dll
+C:\GitRepos\DeployManager\DeployManager\bin\Debug\Newtonsoft.Json.dll
+C:\GitRepos\DeployManager\DeployManager\bin\Debug\DeployerDomain.pdb
+C:\GitRepos\DeployManager\DeployManager\bin\Debug\Newtonsoft.Json.xml
 C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.csproj.AssemblyReference.cache
 C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.csproj.SuggestedBindingRedirects.cache
 C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.csproj.CoreCompileInputs.cache
+C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.csproj.CopyComplete
 C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.exe
 C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.pdb
-C:\GitRepos\DeployManager\DeployManager\bin\Debug\Newtonsoft.Json.dll
-C:\GitRepos\DeployManager\DeployManager\bin\Debug\Newtonsoft.Json.xml
-C:\GitRepos\DeployManager\DeployManager\obj\Debug\DeployManager.csproj.CopyComplete
