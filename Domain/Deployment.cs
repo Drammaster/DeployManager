@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DeployManager
+﻿namespace Domain
 {
-    internal class Deployment
+    public class Deployment
     {
         public string Id { get; set; }
         public string ReleaseId { get; set; }
         public string EnvironmentId { get; set; }
         public string DeployedAt { get; set; }
-        public Deployment(string id, string releaseId, string environmentId, string deployedAt)
+        public Deployment(string id = "", string releaseId = "", string environmentId = "", string deployedAt = "")
         {
             Id = id;
             ReleaseId = releaseId;
@@ -25,12 +19,7 @@ namespace DeployManager
         {
             try
             {
-                Deployment latestDeployment = new Deployment(
-                    String.Empty,
-                    String.Empty,
-                    String.Empty,
-                    String.Empty
-                    );
+                Deployment latestDeployment = new Deployment();
 
                 // Find each deployment which was made to the environment.
                 foreach (var deployment in deployments)

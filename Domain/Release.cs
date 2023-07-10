@@ -1,13 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
-namespace DeployManager
+namespace Domain
 {
-    internal class Release
+    public class Release
     {
         public string Id { get; set; }
         public string ProjectId { get; set; }
         public string Version { get; set; }
         public string Created { get; set; }
+        public Release(string id = "", string projectId = "", string version = "", string created = "")
+        {
+            Id = id;
+            ProjectId = projectId;
+            Version = version;
+            Created = created;
+        }
 
         // Finds and returns all releases related to the provided projectId as a list of strings.
         public static List<string> AllProjectReleases(string projectId, List<Release> releases)
