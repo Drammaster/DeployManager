@@ -1,6 +1,6 @@
 namespace DeployerTest
 {
-    public class UnitTest1
+    public class ReleaseTests
     {
         [Fact]
         public void Test1()

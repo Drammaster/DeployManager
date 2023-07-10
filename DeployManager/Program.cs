@@ -10,7 +10,7 @@ namespace DeployManager
     {
         static void Main()
         {
-            short numberOfReleasesToKeep = 1;
+            //short numberOfReleasesToKeep = 1;
 
             // All JSON file imports.
             string projectsJson = File.ReadAllText("Projects.json");
@@ -27,20 +27,26 @@ namespace DeployManager
 
             foreach (var project in projects)
             {
-                // Finding all releases for a project.
+                // Finding all releases for the project.
                 List<string> projectReleases = Release.AllProjectReleases(project.Id, releases);
 
+                // Find all deployments made to the project
+                var projectDeploys = Deployment.FindProjectDeploys(projectReleases, deployments);
+
                 Console.WriteLine($"Project {project.Name}");
-                Console.WriteLine();
+                Console.WriteLine(); // Space for readability.
 
                 foreach (var environment in environments)
                 {
                     Console.WriteLine($"Environment {environment.Name}");
-                    var projectDeploys = Deployment.FindProjectDeploys(projectReleases, deployments);
+
+                    // Find and show the latest deployment to the environment.
                     Deployment.FindLatestDeploy(environment.Id, projectDeploys);
                 }
-                Console.WriteLine();
+                Console.WriteLine(); // Space for readability.
             }
+
+            // Wait for key press to allow user to inspect the results.
             Console.ReadKey();
         }
     }
